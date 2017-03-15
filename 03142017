@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
 	<meta charset="UTF-8" />
-    <title>Do or Die</title>
+    <title>Phaser - Making your first game, part 7</title>
 	<script type="text/javascript" src="js/phaser.min.js"></script>
     <style type="text/css">
         body {
@@ -109,16 +109,20 @@ function update() {
         player.frame = 4;
     }
     
-    //  Allow the player to jump if they are touching the ground.
+    //  Allow the player to move up
     if (cursors.up.isDown)
     {
         player.body.velocity.y = -30;
+    }
+    else if (cursors.down.isDown)
+    {
+        player.body.velocity.y = 30;
     }
     else
     {
         player.body.velocity.y = 0;
     }
-
+    
 }
 </script>
 
