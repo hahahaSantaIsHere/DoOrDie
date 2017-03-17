@@ -19,7 +19,7 @@ var game = new Phaser.Game(1438, 777, Phaser.AUTO, '', { preload: preload, creat
 function preload() {
 
     game.load.image('sky', 'assets/sky.png');
-    game.load.image('sky2', 'assets/sky.png');    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    game.load.image('sky2', 'assets/sky.png');    game.load.spritesheet('dude1', 'assets/dude1.png', 100, 100);
 }
 
 var player;
@@ -35,7 +35,7 @@ function create() {
     game.add.sprite(800, 0, 'sky2');
 
     // The player and its settings
-    player = game.add.sprite(50, game.world.height - 550, 'dude');
+    player = game.add.sprite(50, game.world.height - 550, 'dude1');
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
