@@ -1,4 +1,4 @@
-<!doctype html> 
+<!DOCTYPE html> 
 <html lang="en"> 
 <head> 
 	<meta charset="UTF-8" />
@@ -11,23 +11,47 @@
     </style>
 </head>
 <body>
-
+  
 <script type="text/javascript">
 
-var game = new Phaser.Game(1438, 777, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-
-function preload() {
-
-    game.load.image('sky', 'assets/sky.png');
-    game.load.image('sky2', 'assets/sky.png');   game.load.image('dude1', 'assets/dude1.png', 100, 100);
-    game.load.image('barrier', 'assets/barriers.png');
-}
+var game = new Phaser.Game(1438, 777, Phaser.AUTO, '', { 
+  preload: preload, create: create, update: update 
+});
 
 var player;
 var cursors;
     
-//this will create an array to check for collision.
-var barriers;
+// this will create an array of barriers to check for collisions.
+var barriers = [];
+const BARRIER_LOCATIONS = [
+    [90, 10],
+    [70, 10],
+    [50, 10],
+    [30, 30],
+    [10, 50],
+    [10, 70],
+    [10, 90],
+    [10, 110],
+    [10, 130],
+    [10, 150],
+    [10, 170],
+    [10, 190],
+    [10, 210],
+    [10, 230],
+    [10, 250],
+    [10, 270],
+    [10, 290],
+    [10, 310],
+    [560, 24],
+    [10, 10]
+];
+
+function preload() {
+    game.load.image('sky', 'assets/sky.png');
+    game.load.image('sky2', 'assets/sky.png');   
+    game.load.image('helicopter', 'assets/dude1.png', 100, 100);
+    game.load.image('barrier', 'assets/barriers.png');
+}
 
 function create() {
 
@@ -39,12 +63,12 @@ function create() {
     game.add.sprite(800, 0, 'sky2');
 
     // The player and its settings
-    player = game.add.sprite(50, game.world.height - 550, 'dude1');
+    player = game.add.sprite(50, game.world.height - 550, 'helicopter');
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
 
-    //  Player physics properties. Give the little guy a slight bounce.
+    //  Player physics properties. 
     player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
@@ -54,30 +78,29 @@ function create() {
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
     
-    //add more barrires
-    barriers = game.add.group();
+    // add barrires
     barriers.enableBody = true;    
-    makeBarriers();
+    makeBarriers(BARRIER_LOCATIONS);
 }
     
-// function to check barriers and cars
-function checkBarriersCollision() {
-    barriers.forEach(function(a){
-        var collided = game.physics.arcade.collide(player, a);
-        if (collided) {
+// Checks collisions between barriers and player
+function checkCollisions() {
+    barriers.forEach((a) => {
+        if (game.physics.arcade.collide(player, a)) {
             console.log("collision!");
         }
     });
 }
 
+// This is the callback function to update the screen every few milliseconds.
 function update() {
     
     // show mouse coordinates
 //    console.log ( "Y:" + game.input.mousePointer.y);
 //    console.log ( "X:" + game.input.mousePointer.x);
 
-    // Collide the player and the barriers
-    checkBarriersCollision();
+    // Check for collisions between player and barriers
+    checkCollisions();
 
     //  Reset the players velocity (movement)
     player.body.acceleration.x = 0;
@@ -86,21 +109,18 @@ function update() {
     {
         //  Move to the left
         player.body.acceleration.x = -150;
-
         //player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
         //  Move to the right
         player.body.acceleration.x = 150;
-
         //player.animations.play('right');
     }
     else
     {
         //  Stand still
         //player.animations.stop();
-
         //player.frame = 4;
     }
     
@@ -116,56 +136,28 @@ function update() {
     else
     {
         player.body.acceleration.y = 0;
-    }
-    
+    }    
 }
     
-
-    
-function makeBarriers() {
-    
-    const BARRIER_LOCATIONS = [
-                                [90, 10],
-                                [70, 10],
-                                [50, 10],
-                                [30, 30],
-                                [10, 50],
-                                [10, 70],
-                                [10, 90],
-                                [10, 110],
-                                [10, 130],
-                                [10, 150],
-                                [10, 170],
-                                [10, 190],
-                                [10, 210],
-                                [10, 230],
-                                [10, 250],
-                                [10, 270],
-                                [10, 290],
-                                [10, 310],
-                                [560, 24],
-                                [10, 10]
-                              ];
-    
-    
-    for (var i = 0; i < BARRIER_LOCATIONS.length; i++) {
+// creates barriers given a set of locations
+function makeBarriers(locations) {    
+    for (var i = 0; i < locations.length; i++) {
                 
-        var barrier = game.add.sprite(BARRIER_LOCATIONS[i][1], BARRIER_LOCATIONS[i][0], 'barrier'); 
+        // make a barrier
+        var barrier = game.add.sprite(locations[i][1], locations[i][0], 'barrier'); 
     
         //  and its physics settings
         game.physics.enable(barrier, Phaser.Physics.ARCADE);
-        
         barrier.body.moves = false;
-        
-        
+
         //  This is the collision rule
         barrier.body.setCircle(10);
        
+        // add it to the array of barriers
         barriers.push(barrier);
     }
 }
 
 </script>
-
 </body>
 </html>
