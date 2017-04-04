@@ -125,11 +125,8 @@ function update() {
     }
     else
     {
-        player.body.acceleration.y = 0;
+        player.body.acceleration.y = 70;
     }    
-  {
-        player.body.gravity.y= 100;
-  }
 } // end update
     
 // creates barriers given a set of locations
