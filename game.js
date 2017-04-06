@@ -41,6 +41,9 @@ function preload() {
     game.load.image('sky2', 'assets/sky.png');   
     game.load.image('helicopter', 'assets/dude1.png', 100, 100);
     game.load.image('barrier', 'assets/barriers.png');
+    game.load.image('newterrain3', 'assets/newterrain3.png');
+    //game.load.image('BigCannon', 'assets/terrain.png');
+
 } // end preload
 
 function create() {
@@ -51,7 +54,10 @@ function create() {
     //  A simple background for our game
     game.add.sprite(0, 0, 'sky');
     game.add.sprite(800, 0, 'sky2');
-
+    //add the terrain
+    game.add.sprite(0,0, 'newterrain3');
+    //game.add.sprite(100,250, 'BigCannon');  (image will not show up, maybe too small?)
+    
     // The player and its settings
     player = game.add.sprite(50, game.world.height - 550, 'helicopter');
 
