@@ -16,8 +16,17 @@ body.addEventListener('click', function(e) { console.log(e.clientX, e.clientY )}
 // this will create an array of barriers to check for collisions.
 var barriers = [];
 const BARRIER_LOCATIONS = [
-    [600, 40],
-    [600, 10],
+    //This is the left side of the terrain
+    //the X and Y coordinates are filpped in the barrier locations!!!
+    [522.35, 0],
+    [522.35, 10],
+    [522.35, 60],
+    [522.35, 110],
+    [522.35, 160],
+    [522.35, 210],
+    [522.35, 240],
+    [537.35, 260],
+    [535.25, 260],
      //right half of the terrain barriers
     [435.5, 1098],
     [435.5, 1130],
