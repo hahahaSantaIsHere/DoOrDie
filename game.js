@@ -10,7 +10,9 @@ var game = new Phaser.Game(1337, 677, Phaser.AUTO, '', {
 });
 var player;
 var cursors;
-    
+var body = document.getElementsByTagName("body")[0];
+body.addEventListener('click', function(e) { console.log(e.clientX, e.clientY )})    
+
 // this will create an array of barriers to check for collisions.
 var barriers = [];
 const BARRIER_LOCATIONS = [
