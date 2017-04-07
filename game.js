@@ -5,7 +5,7 @@
  */
 
 // Create variables
-var game = new Phaser.Game(1438, 777, Phaser.AUTO, '', { 
+var game = new Phaser.Game(1337, 677, Phaser.AUTO, '', { 
   preload: preload, create: create, update: update 
 });
 var player;
@@ -14,8 +14,8 @@ var cursors;
 // this will create an array of barriers to check for collisions.
 var barriers = [];
 const BARRIER_LOCATIONS = [
-    [90, 10],
-    [70, 10],
+    [600, 40],
+    [600, 10],
     [50, 10],
     [30, 30],
     [10, 50],
@@ -32,13 +32,13 @@ const BARRIER_LOCATIONS = [
     [10, 270],
     [10, 290],
     [10, 310],
-    [560, 24],
-    [10, 10]
+    [594, 70],
+    [594, 130],
+    [594, 100]
 ];
 
 function preload() {
-    game.load.image('sky', 'assets/sky.png');
-    game.load.image('sky2', 'assets/sky.png');   
+  
     game.load.image('helicopter', 'assets/dude1.png', 100, 100);
     game.load.image('barrier', 'assets/barriers.png');
     game.load.image('newterrain3', 'assets/newterrain3.png');
@@ -51,9 +51,7 @@ function create() {
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    //  A simple background for our game
-    game.add.sprite(0, 0, 'sky');
-    game.add.sprite(800, 0, 'sky2');
+
     //add the terrain
     game.add.sprite(0,0, 'newterrain3');
     //game.add.sprite(100,250, 'BigCannon');  (image will not show up, maybe too small?)
@@ -131,8 +129,11 @@ function update() {
     }
     else
     {
-        player.body.acceleration.y = 70;
-    }    
+        player.body.acceleration.y = 0;
+    }
+    {
+        player.body.gravity.y = 5.5;
+    }
 } // end update
     
 // creates barriers given a set of locations
