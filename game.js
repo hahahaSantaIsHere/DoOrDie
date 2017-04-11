@@ -150,7 +150,8 @@ function update() {
 } // end update
     
 // creates barriers given a set of locations
-function makeBarriers(locations) {    
+function makeBarriers(locations) {   
+    
     for (var i = 0; i < locations.length; i++) {
                 
         // make a barrier
@@ -162,6 +163,9 @@ function makeBarriers(locations) {
 
         //  This is the collision rule
         barrier.body.setCircle(10);
+        //make it invisible
+        barrier.alpha = 0;
+
        
         // add it to the array of barriers
         barriers.push(barrier);
