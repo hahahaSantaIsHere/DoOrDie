@@ -92,9 +92,14 @@ function create() {
     
 // Checks collisions between barriers and player
 function checkCollisions() {
-    barriers.forEach((a) => {
-        if (game.physics.arcade.collide(player, a)) {
-            console.log("collision!");
+    barriers.forEach((barrier) => {
+        if (game.physics.arcade.collide(player, barrier)) {
+            player.kill();
+            
+            // show explosion
+            
+            // restart game
+            
         }
     });
 } // checkCollisions
