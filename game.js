@@ -1,4 +1,5 @@
 /**
+ * Do Or D/**
  * Do Or Die!
  *
  * By: Nathan, Perry, Bin, Marty
@@ -23,7 +24,7 @@ var cannons = [];
 const CANNON_LOCATIONS = [      
  [425, 100],
  [440, 495],
- [34, 1100],
+ [340, 1100],
  [405,800],    
     
     
