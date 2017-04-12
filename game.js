@@ -1,5 +1,4 @@
 /**
- * Do Or D/**
  * Do Or Die!
  *
  * By: Nathan, Perry, Bin, Marty
@@ -72,7 +71,7 @@ function preload() {
     game.load.image('helicopter', 'assets/dude1.png', 100, 100);
     game.load.image('barrier', 'assets/barriers.png');
     game.load.image('terrain', 'assets/newterrain3.png');
-    game.load.image('cannon', 'assets/bigCannon.png');
+    game.load.image('cannon', 'assets/BigCannon.png');
 
 } // end preload
 
