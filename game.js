@@ -15,6 +15,20 @@ body.addEventListener('click', function(e) { console.log(e.clientX, e.clientY )}
 
 // this will create an array of barriers to check for collisions.
 var barriers = [];
+
+// this will place cannons in 4 locations
+var cannons = [];
+
+// Array of cannon locations
+const CANNON_LOCATIONS = [      
+ [425, 100],
+ [440, 495],
+ [34, 1100],
+ [405,800],    
+    
+    
+];
+
 const BARRIER_LOCATIONS = [
     //This is the left side of the terrain
     //the X and Y coordinates are filpped in the barrier locations!!
@@ -55,7 +69,7 @@ function preload() {
     game.load.image('helicopter', 'assets/dude1.png', 100, 100);
     game.load.image('barrier', 'assets/barriers.png');
     game.load.image('terrain', 'assets/newterrain3.png');
-    //game.load.image('BigCannon', 'assets/terrain.png');
+    game.load.image('cannon', 'assets/bigCannon.png');
 
 } // end preload
 
@@ -176,3 +190,25 @@ function makeBarriers(locations) {
         barriers.push(barrier);
     }
 } // end makeBarriers
+
+
+// creates cannon given a set of locations
+function makeCannons(locations) {   
+    
+    for (var i = 0; i < locations.length; i++) {
+                
+        // make a cannon singular
+        var cannon = game.add.sprite(locations[i][1], locations[i][0], 'cannon'); 
+    
+        //  and its physics settings
+        game.physics.enable(cannon, Phaser.Physics.ARCADE);
+        cannon.body.moves = false;
+
+        //  This is the collision rule
+        cannon.body.setCircle(10);
+       
+        // add it to the array of cannons
+        cannons.push(cannon);
+    }
+} // end makeCannons
+
