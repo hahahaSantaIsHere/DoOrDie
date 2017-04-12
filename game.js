@@ -29,6 +29,7 @@ const CANNON_LOCATIONS = [
     
 ];
 
+
 const BARRIER_LOCATIONS = [
     //This is the left side of the terrain
     //the X and Y coordinates are filpped in the barrier locations!!
@@ -63,6 +64,7 @@ const BARRIER_LOCATIONS = [
     [450, 1210],
     [450, 1240]
 ];
+
 
 function preload() {
   
@@ -102,18 +104,18 @@ function create() {
     // add barrires
     barriers.enableBody = true;    
     makeBarriers(BARRIER_LOCATIONS);
+
+    // add cannons
+    cannons.enableBody = true;    
+    makeCannons(CANNON_LOCATIONS);
+    
 } // end create
     
 // Checks collisions between barriers and player
 function checkCollisions() {
-    barriers.forEach((barrier) => {
-        if (game.physics.arcade.collide(player, barrier)) {
-            player.kill();
-            
-            // show explosion
-            
-            // restart game
-            
+    barriers.forEach((a) => {
+        if (game.physics.arcade.collide(player, a)) {
+            console.log("collision!");
         }
     });
 } // checkCollisions
@@ -191,7 +193,6 @@ function makeBarriers(locations) {
     }
 } // end makeBarriers
 
-
 // creates cannon given a set of locations
 function makeCannons(locations) {   
     
@@ -211,4 +212,3 @@ function makeCannons(locations) {
         cannons.push(cannon);
     }
 } // end makeCannons
-
