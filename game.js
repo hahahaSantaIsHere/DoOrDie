@@ -85,7 +85,7 @@ function create() {
     //game.add.sprite(100,250, 'BigCannon');  (image will not show up, maybe too small?)
     
     // The player and its settings
-    player = game.add.sprite(50, game.world.height - 550, 'helicopter');
+    player = game.add.sprite(25, game.world.height - 700, 'helicopter');
 
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
