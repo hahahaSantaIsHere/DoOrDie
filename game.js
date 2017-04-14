@@ -78,7 +78,7 @@ function preload() {
     game.load.image('barrier', 'assets/barriers.png');
     game.load.image('terrain', 'assets/newterrain3.png');
     game.load.image('cannon', 'assets/bigCannon.png');
-
+    game.load.image('heart','assets/heart.png');
 } // end preload
 
 function create() {
@@ -131,6 +131,16 @@ function create() {
     // add cannons
     cannons.enableBody = true;    
     makeCannons(CANNON_LOCATIONS);
+  
+  lives = game.add.group();
+   
+game.add.text(10 , 10, 'Lives : ', { font: '34px Arial', fill: '#fff' });
+
+    var heart = lives.create( 10 + (30 * 1), 60, 'heart');
+        heart.anchor.setTo(0.5, 0.5);
+   
+    var heart2 = lives.create( 10 + (30 * 2), 60, 'heart');
+        heart2.anchor.setTo(0.5, 0.5);
     
 } // end create
 
