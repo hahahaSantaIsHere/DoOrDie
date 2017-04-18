@@ -4,7 +4,7 @@
 
 - ~~We need to add cannons~~
 - We need to add balls
-- We need to make the balls follow our helicopter
+- We need to make the balls attack the coordinates of our helicopter
 - We need to make the balls acclerate
 - ~~We need to put all the barriers~~
 - ~~We need to add score board~~
