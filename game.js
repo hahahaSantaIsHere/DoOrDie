@@ -31,6 +31,8 @@ var barriers = [];
 // this will place cannons in 4 locations
 var cannons = [];
 
+var ball;
+
 // Array of cannon locations
 const CANNON_LOCATIONS = [      
     [425, 100],
@@ -85,6 +87,7 @@ function preload() {
     game.load.image('terrain', 'assets/newterrain3.png');
     game.load.image('cannon', 'assets/bigCannon.png');
     game.load.image('heart','assets/heart.png');
+    game.load.image('cannonball', 'assets/cannonball.png', 10, 10);
 } // end preload
 
 
@@ -112,7 +115,7 @@ function create() {
     // Useful spritesheet animation code for when the time comes.
     //player.animations.add('left', [0, 1, 2, 3], 10, true);
     //player.animations.add('right', [5, 6, 7, 8], 10, true);
-
+setInterval(fireCannonBall, 2000);
     // Initialize timer number
     timer = 0;
     
@@ -145,9 +148,44 @@ function create() {
     var heart2 = lives.create( 10 + (30 * 2), 60, 'heart');
         heart2.anchor.setTo(0.5, 0.5);
 
+    
+    
 } // end create
 
+function fireCannonBall() {
+    // select random tower to fire
     
+    //var cannonnumber = Math.round(Math.random()*10) + 3;
+    var upper_bound = 3
+    var lower_bound = 0 
+    var cannonnumber = Math.round(Math.random()*(upper_bound - lower_bound) + lower_bound);
+    
+    //console.log(cannonnumber)
+    
+    var startingBallspot = CANNON_LOCATIONS[cannonnumber];
+    var x_coordinate = startingBallspot[0];
+    var y_coordinate = startingBallspot[1];
+    
+    // add cannonball
+    ball = game.add.sprite(y_coordinate + 25,x_coordinate,'cannonball');
+    
+    //Get the current coordinates of the helicopter
+    var x_coordinate_Helicopter = player.position.x;
+    var y_coordiante_Helicopter = player.position.y;
+    console.log(x_coordinate_Helicopter)
+    //Fire the cannon ball
+    game.physics.arcade.enable(ball);
+    ball.body.move = true;
+    //It doesn't work yet
+    ball.body.velocity.x = y_coordiante_Helicopter;
+    ball.body.velocity.y = x_coordinate_Helicopter;
+    
+    
+    
+    //
+}
+    
+
 // Checks collisions between barriers and player
 function checkCollisions() {
     barriers.forEach((barrier) => {
