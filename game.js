@@ -182,15 +182,29 @@ function fireCannonBall() {
     ball.rotation = game.physics.arcade.moveToObject(ball, player, 200);
     
 }
-
 // Checks collisions between barriers and player
 function checkCollisions() {
     barriers.forEach((barrier) => {
-        if (game.physics.arcade.collide(player, barrier))
-            //console.log("collision!");
+        if (game.physics.arcade.collide(player, barrier)) {
+//            console.log("collision with barrier!");
+        }
+       
     });
+     if (game.physics.arcade.collide(player, ball)) {
+            console.log("collision with ball!");
+       takeALife()     
+        }
 } // checkCollisions
 
+function takeALife() {
+    var life = lives.getFirstAlive();
+    life.kill();
+    if(lives.countLiving()=== 0 ) {   
+        console.log ('Game Over!!') 
+        player.kill();
+     
+    }   
+} 
 
 // This is the callback function to update the screen every few milliseconds.
 function update() {
