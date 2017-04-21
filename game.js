@@ -173,25 +173,34 @@ function fireCannonBall() {
     var x_coordinate_Helicopter = player.position.x;
     var y_coordiante_Helicopter = player.position.y;
     console.log(x_coordinate_Helicopter)
+    
     //Fire the cannon ball
-    game.physics.arcade.enable(ball);
+    game.physics.arcade.enableBody(ball);
     ball.body.move = true;
-    //It doesn't work yet
-    ball.body.velocity.x = y_coordiante_Helicopter;
-    ball.body.velocity.y = x_coordinate_Helicopter;
+    
+    //It makes the ball move towards the helicopter
+    ball.rotation = game.physics.arcade.moveToObject(ball, player, 200);
+    
+
+    //ball.rotation = game.physics.arcade.angleToPointer(player);
+    //game.physics.arcade.moveToPointer(ball, 100);
+    
+
+   // game.physics.arcade.accelerationFromRotation(ball.rotation, 80, player.body.acceleration);
+    // ball.body.velocity.x = x_coordinate_Helicopter;
+    //ball.body.velocity.y = -y_coordiante_Helicopter;
+    //  console.log(ball.body.velocity.x)
     
     
     
     //
 }
-    
 
 // Checks collisions between barriers and player
 function checkCollisions() {
     barriers.forEach((barrier) => {
-        if (game.physics.arcade.collide(player, barrier)) {
+        if (game.physics.arcade.collide(player, barrier))
             //console.log("collision!");
-        }
     });
 } // checkCollisions
 
