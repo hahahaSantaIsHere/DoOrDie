@@ -199,6 +199,7 @@ function checkCollisions() {
 function takeALife() {
     var life = lives.getFirstAlive();
     life.kill();
+    ball.kill();
     if(lives.countLiving()=== 0 ) {   
         console.log ('Game Over!!') 
         player.kill();
