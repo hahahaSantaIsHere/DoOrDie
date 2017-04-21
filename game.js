@@ -181,19 +181,6 @@ function fireCannonBall() {
     //It makes the ball move towards the helicopter
     ball.rotation = game.physics.arcade.moveToObject(ball, player, 200);
     
-
-    //ball.rotation = game.physics.arcade.angleToPointer(player);
-    //game.physics.arcade.moveToPointer(ball, 100);
-    
-
-   // game.physics.arcade.accelerationFromRotation(ball.rotation, 80, player.body.acceleration);
-    // ball.body.velocity.x = x_coordinate_Helicopter;
-    //ball.body.velocity.y = -y_coordiante_Helicopter;
-    //  console.log(ball.body.velocity.x)
-    
-    
-    
-    //
 }
 
 // Checks collisions between barriers and player
