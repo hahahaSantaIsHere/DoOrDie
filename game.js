@@ -159,13 +159,10 @@ setInterval(fireCannonBall, 2000);
 function fireCannonBall() {
     // select random tower to fire
     
-    //var cannonnumber = Math.round(Math.random()*10) + 3;
     var upper_bound = 3
     var lower_bound = 0 
     var cannonnumber = Math.round(Math.random()*(upper_bound - lower_bound) + lower_bound);
-    
-    //console.log(cannonnumber)
-    
+        
     var startingBallspot = CANNON_LOCATIONS[cannonnumber];
     var x_coordinate = startingBallspot[0];
     var y_coordinate = startingBallspot[1];
@@ -173,16 +170,9 @@ function fireCannonBall() {
     // add cannonball
     var ball = game.add.sprite(y_coordinate + 25,x_coordinate,'cannonball');
     
-
-        //  This is the collision rule
-        //cannon.body.setCircle(10);
-       
-        // add it to the array of cannons
-        //cannons.push(cannon);
     //Get the current coordinates of the helicopter
     var x_coordinate_Helicopter = player.position.x;
     var y_coordiante_Helicopter = player.position.y;
-   // console.log(x_coordinate_Helicopter)
     
     //Fire the cannon ball
     game.physics.arcade.enableBody(ball);
@@ -248,13 +238,7 @@ function update() {
         player.body.acceleration.x = 150;
         //player.animations.play('right');
     }
-    else
-    {
-        //  Stand still
-        //player.animations.stop();
-        //player.frame = 4;
-    }
-    
+   
     //  Allow the player to move up
     if (cursors.up.isDown)
     {
