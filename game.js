@@ -8,7 +8,7 @@
 /* Create variables */
 
 // Create the Phaser game object
-var game = new Phaser.Game(1337, 677, Phaser.AUTO, '', { 
+var game = new Phaser.Game(1337, 677, Phaser.AUTO, 'HA', { 
   preload: preload, create: create, update: update 
 });
 
@@ -31,7 +31,9 @@ var barriers = [];
 // this will place cannons in 4 locations
 var cannons = [];
 
-var ball;
+// this will place add balls
+var balls = [];
+
 
 // Array of cannon locations
 const CANNON_LOCATIONS = [      
@@ -140,7 +142,7 @@ setInterval(fireCannonBall, 2000);
     // Add a group of lives, or heart containers
     lives = game.add.group();
    
-    game.add.text(10 , 10, 'Lives : ', { font: '34px Arial', fill: '#fff' });
+    game.add.text(10 , 10, 'Lives : ', { font: '34px Helvetica', fill: '#fff' });
 
     var heart = lives.create( 10 + (30 * 1), 60, 'heart');
         heart.anchor.setTo(0.5, 0.5);
@@ -167,8 +169,14 @@ function fireCannonBall() {
     var y_coordinate = startingBallspot[1];
     
     // add cannonball
-    ball = game.add.sprite(y_coordinate + 25,x_coordinate,'cannonball');
+    var ball = game.add.sprite(y_coordinate + 25,x_coordinate,'cannonball');
     
+
+        //  This is the collision rule
+        //cannon.body.setCircle(10);
+       
+        // add it to the array of cannons
+        //cannons.push(cannon);
     //Get the current coordinates of the helicopter
     var x_coordinate_Helicopter = player.position.x;
     var y_coordiante_Helicopter = player.position.y;
@@ -180,6 +188,7 @@ function fireCannonBall() {
     
     //It makes the ball move towards the helicopter
     ball.rotation = game.physics.arcade.moveToObject(ball, player, 200);
+    balls.push(ball);
     
 }
 // Checks collisions between barriers and player
@@ -190,22 +199,25 @@ function checkCollisions() {
         }
        
     });
-     if (game.physics.arcade.collide(player, ball)) {
+    balls.forEach((ball) => {
+        if (game.physics.arcade.collide(player, ball)) {
             console.log("collision with ball!");
-       takeALife()     
+            takeALife(ball);     
         }
-} // checkCollisions
+    });
+}
+            // checkCollisions
 
-function takeALife() {
+function takeALife(ball) {
     var life = lives.getFirstAlive();
     life.kill();
     ball.kill();
     if(lives.countLiving()=== 0 ) {   
-        console.log ('Game Over!!') 
+        console.log ('Game Over!!');
         player.kill();
      
-    }   
-} 
+    }
+}
 
 // This is the callback function to update the screen every few milliseconds.
 function update() {
