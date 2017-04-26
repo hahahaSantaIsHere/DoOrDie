@@ -114,6 +114,8 @@ function create() {
     // Player physics properties. 
     player.body.collideWorldBounds = true;
 
+    player.body.setSize(80, 48, 20, 20);
+
     // Useful spritesheet animation code for when the time comes.
     //player.animations.add('left', [0, 1, 2, 3], 10, true);
     //player.animations.add('right', [5, 6, 7, 8], 10, true);
@@ -180,7 +182,7 @@ function fireCannonBall() {
     //Get the current coordinates of the helicopter
     var x_coordinate_Helicopter = player.position.x;
     var y_coordiante_Helicopter = player.position.y;
-    console.log(x_coordinate_Helicopter)
+   // console.log(x_coordinate_Helicopter)
     
     //Fire the cannon ball
     game.physics.arcade.enableBody(ball);
@@ -201,7 +203,6 @@ function checkCollisions() {
     });
     balls.forEach((ball) => {
         if (game.physics.arcade.collide(player, ball)) {
-            console.log("collision with ball!");
             takeALife(ball);     
         }
     });
@@ -213,7 +214,7 @@ function takeALife(ball) {
     life.kill();
     ball.kill();
     if(lives.countLiving()=== 0 ) {   
-        console.log ('Game Over!!');
+        game.state.restart();
         player.kill();
      
     }
