@@ -114,21 +114,20 @@ function create() {
     // Player physics properties. 
     player.body.collideWorldBounds = true;
 
-    player.body.setSize(80, 48, 20, 20);
+    player.body.setSize(80, 46, 20, 20);
+    
+   //This sets the timer to every second. 
+    game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this);
 
-    // Useful spritesheet animation code for when the time comes.
-    //player.animations.add('left', [0, 1, 2, 3], 10, true);
-    //player.animations.add('right', [5, 6, 7, 8], 10, true);
-setInterval(fireCannonBall, 2000);
+    function updateCounter() {
+        timer++;
+    }
+    
+    //This calls the cannon every two seconds.
+    game.time.events.loop(2 * Phaser.Timer.SECOND, fireCannonBall, this);
+
     // Initialize timer number
     timer = 0;
-    
-    // set interval with a function to be called every second 
-    let interval = setInterval (() => {
-
-        //increment timer integer by 1    
-        timer++;
-    }, 1000); // 1000 milliseconds is one second
     
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
@@ -151,8 +150,8 @@ setInterval(fireCannonBall, 2000);
    
     var heart2 = lives.create( 10 + (30 * 2), 60, 'heart');
         heart2.anchor.setTo(0.5, 0.5);
-
     
+    console.log("create")
     
 } // end create
 
@@ -205,7 +204,6 @@ function takeALife(ball) {
     ball.kill();
     if(lives.countLiving()=== 0 ) {   
         game.state.restart();
-        player.kill();
      
     }
 }
@@ -238,7 +236,7 @@ function update() {
         player.body.acceleration.x = 150;
         //player.animations.play('right');
     }
-   
+    
     //  Allow the player to move up
     if (cursors.up.isDown)
     {
