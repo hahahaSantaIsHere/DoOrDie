@@ -8,11 +8,15 @@
 /* Create variables */
 
 // Create the Phaser game object
-var game = new Phaser.Game(1337, 677, Phaser.AUTO, 'HA', { 
-  preload: preload, create: create, update: update 
-});
+DoOrDie.game = function(){};
 
-// timer number
+DoOrDie.game.prototype = {
+    create: create,
+    preload: preload,
+    update: update
+};
+    
+// timer number 
 var timer;
 
 // array of lives
@@ -203,7 +207,7 @@ function takeALife(ball) {
     life.kill();
     ball.kill();
     if(lives.countLiving()=== 0 ) {   
-        game.state.restart();
+        game.state.start("menu");
      
     }
 }
