@@ -38,6 +38,8 @@ var cannons = [];
 // this will place add balls
 var balls = [];
 
+//music
+var music;
 
 // Array of cannon locations
 const CANNON_LOCATIONS = [      
@@ -94,11 +96,16 @@ function preload() {
     game.load.image('cannon', 'assets/bigCannon.png');
     game.load.image('heart','assets/heart.png');
     game.load.image('cannonball', 'assets/cannonball.png', 10, 10);
+    game.load.audio('aud', 'assets/NeverGonnaGiveYouUp.mp3');
 } // end preload
 
 
 // Phaser methods to set up variables and create objects
 function create() {
+    
+    music = game.add.audio('aud');
+    
+    music.play();
     
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -211,7 +218,7 @@ function takeALife(ball) {
     ball.kill();
     if(lives.countLiving()=== 0 ) {   
         game.state.start("menu");
-        
+        music.pause();
     }
 }
 
