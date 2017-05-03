@@ -107,7 +107,10 @@ function create() {
     game.add.sprite(0,0, 'terrain');
 
     // This creates the scoreboard
-    timerText = game.add.text(1150, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });//
+    timerText = game.add.text(895, 16, 'Score: 0', { fontSize: '32px', fill: '#fff' });
+  
+    //High score 
+    highScoreText = game.add.text(1075, 16, 'High Score: ' + localStorage.highScore, { fontSize: '32px', fill: '#fff' });
 
     // The player and its settings
     player = game.add.sprite(50, game.world.height - 550, 'helicopter');
@@ -208,7 +211,7 @@ function takeALife(ball) {
     ball.kill();
     if(lives.countLiving()=== 0 ) {   
         game.state.start("menu");
-     
+        
     }
 }
 
@@ -221,6 +224,7 @@ function update() {
     
     // show the timer text
     timerText.text = 'Score: ' + timer;
+
     
     // Check for collisions between player and barriers
     checkCollisions();
